@@ -1,20 +1,20 @@
 
 --- Show feature metadata ---
       feature_name                                        description                    source version          created_at
-       CreditScore                              Customer credit score          Original dataset    v1.0 2025-08-23 23:57:28
-         Geography                       Customer geography (country)          Original dataset    v1.0 2025-08-23 23:57:28
-            Gender                                    Customer gender          Original dataset    v1.0 2025-08-23 23:57:28
-               Age                                       Customer age          Original dataset    v1.0 2025-08-23 23:57:28
-            Tenure                    Years customer stayed with bank          Original dataset    v1.0 2025-08-23 23:57:28
-           Balance                           Customer account balance          Original dataset    v1.0 2025-08-23 23:57:28
-     NumOfProducts           Number of bank products used by customer          Original dataset    v1.0 2025-08-23 23:57:28
-         HasCrCard   Whether customer has a credit card (1=yes, 0=no)          Original dataset    v1.0 2025-08-23 23:57:28
-    IsActiveMember Whether customer is an active member (1=yes, 0=no)          Original dataset    v1.0 2025-08-23 23:57:28
-   EstimatedSalary                        Customer’s estimated salary          Original dataset    v1.0 2025-08-23 23:57:28
-            Exited              Whether customer exited (1=yes, 0=no)          Original dataset    v1.0 2025-08-23 23:57:28
-BalanceSalaryRatio                          Balance divided by salary Balance & EstimatedSalary    v1.0 2025-08-23 23:57:28
-          AgeGroup                        Categorized age into groups                       Age    v1.0 2025-08-23 23:57:28
- CreditScoreBucket           Bucketed credit score (Poor → Excellent)               CreditScore    v1.0 2025-08-23 23:57:28
+       CreditScore                              Customer credit score          Original dataset    v1.0 2025-08-24 00:18:11
+         Geography                       Customer geography (country)          Original dataset    v1.0 2025-08-24 00:18:11
+            Gender                                    Customer gender          Original dataset    v1.0 2025-08-24 00:18:11
+               Age                                       Customer age          Original dataset    v1.0 2025-08-24 00:18:11
+            Tenure                    Years customer stayed with bank          Original dataset    v1.0 2025-08-24 00:18:11
+           Balance                           Customer account balance          Original dataset    v1.0 2025-08-24 00:18:11
+     NumOfProducts           Number of bank products used by customer          Original dataset    v1.0 2025-08-24 00:18:11
+         HasCrCard   Whether customer has a credit card (1=yes, 0=no)          Original dataset    v1.0 2025-08-24 00:18:11
+    IsActiveMember Whether customer is an active member (1=yes, 0=no)          Original dataset    v1.0 2025-08-24 00:18:11
+   EstimatedSalary                        Customer’s estimated salary          Original dataset    v1.0 2025-08-24 00:18:11
+            Exited              Whether customer exited (1=yes, 0=no)          Original dataset    v1.0 2025-08-24 00:18:11
+BalanceSalaryRatio                          Balance divided by salary Balance & EstimatedSalary    v1.0 2025-08-24 00:18:11
+          AgeGroup                        Categorized age into groups                       Age    v1.0 2025-08-24 00:18:11
+ CreditScoreBucket           Bucketed credit score (Poor → Excellent)               CreditScore    v1.0 2025-08-24 00:18:11
 
 --- Retrieve engineered features ---
  CustomerId  CreditScore  Geography  Gender       Age    Tenure   Balance  NumOfProducts  HasCrCard  IsActiveMember  EstimatedSalary  Exited  BalanceSalaryRatio AgeGroup CreditScoreBucket

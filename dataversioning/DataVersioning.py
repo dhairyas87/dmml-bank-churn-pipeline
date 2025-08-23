@@ -44,7 +44,7 @@ def save_and_version_both(raw_df, transformed_df, raw_path, transformed_path,
     commit_id = subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
 
     # Prepare metadata storage
-    metadata_file = "data/version_metadata.json"
+    metadata_file = "results/version_metadata.json"
     os.makedirs(os.path.dirname(metadata_file), exist_ok=True)
 
     if os.path.exists(metadata_file):
