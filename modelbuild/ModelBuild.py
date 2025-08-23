@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[5]:
 
 
 # ml_training.py
@@ -61,41 +61,52 @@ def save_version_metadata(version_file="data/model_versions.json", notes=""):
 def run_training(db_path="featurestore/featurestore/feature_store.db"):
     df = load_features_from_store(db_path)
 
+    # Drop ID column
+    df = df.drop(columns=["CustomerId"])
+
     X = df.drop(columns=["Exited"])
     y = df["Exited"]
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # Categorical & numeric features
+    categorical_cols = ["Geography", "Gender", "AgeGroup", "CreditScoreBucket"]
+    numeric_cols = [col for col in X.columns if col not in categorical_cols]
 
-    scaler = StandardScaler()
-    X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.transform(X_test)
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("num", StandardScaler(), numeric_cols),
+            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_cols)
+        ]
+    )
 
     results = {}
     os.makedirs("models", exist_ok=True)
 
-    # 1. Logistic Regression
-    log_reg = LogisticRegression(max_iter=1000)
-    log_reg.fit(X_train_scaled, y_train)
-    y_pred_lr = log_reg.predict(X_test_scaled)
-    results["Logistic Regression"] = evaluate_model(y_test, y_pred_lr)
+    # Logistic Regression
+    pipe_lr = Pipeline(steps=[("preprocessor", preprocessor),
+                              ("classifier", LogisticRegression(max_iter=1000))])
+    pipe_lr.fit(X, y)
+    y_pred_lr = pipe_lr.predict(X)
+    results["Logistic Regression"] = evaluate_model(y, y_pred_lr)
     with open("models/log_reg.pkl", "wb") as f:
-        pickle.dump(log_reg, f)
+        pickle.dump(pipe_lr, f)
 
-    # 2. Random Forest
-    rf = RandomForestClassifier(n_estimators=100, random_state=42)
-    rf.fit(X_train, y_train)
-    y_pred_rf = rf.predict(X_test)
-    results["Random Forest"] = evaluate_model(y_test, y_pred_rf)
+    # Random Forest
+    pipe_rf = Pipeline(steps=[("preprocessor", preprocessor),
+                              ("classifier", RandomForestClassifier(n_estimators=100, random_state=42))])
+    pipe_rf.fit(X, y)
+    y_pred_rf = pipe_rf.predict(X)
+    results["Random Forest"] = evaluate_model(y, y_pred_rf)
     with open("models/random_forest.pkl", "wb") as f:
-        pickle.dump(rf, f)
+        pickle.dump(pipe_rf, f)
 
-    # 3. Support Vector Machine (SVM)
-    svm = SVC(kernel="rbf", probability=True, random_state=42)
-    svm.fit(X_train_scaled, y_train)
-    y_pred_svm = svm.predict(X_test_scaled)
-    results["SVM"] = evaluate_model(y_test, y_pred_svm)
+    # SVM
+    pipe_svm = Pipeline(steps=[("preprocessor", preprocessor),
+                               ("classifier", SVC(probability=True))])
+    pipe_svm.fit(X, y)
+    y_pred_svm = pipe_svm.predict(X)
+    results["SVM"] = evaluate_model(y, y_pred_svm)
     with open("models/svm.pkl", "wb") as f:
-        pickle.dump(svm, f)
+        pickle.dump(pipe_svm, f)
 
     # Save metrics report
     with open("data/model_results.txt", "w") as f:
@@ -105,11 +116,10 @@ def run_training(db_path="featurestore/featurestore/feature_store.db"):
                 f.write(f"  {metric}: {value:.4f}\n")
             f.write("\n")
 
-    # Save version metadata
-    save_version_metadata(notes="Trained models with Logistic Regression, Random Forest, SVM")
+    save_version_metadata(notes="Trained models using engineered features (LR, RF, SVM)")
 
-    print("✅ Training complete.")
-    print("📂 Deliverables: models/ (saved models), data/model_results.txt (report), data/model_versions.json (versions)")
+    print("✅ Training complete with engineered features.")
+    print("📂 Deliverables: models/, data/model_results.txt, data/model_versions.json")
 
 
 # In[ ]:
