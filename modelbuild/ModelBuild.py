@@ -1,24 +1,23 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
+# In[6]:
 
-
-# ml_training.py
 
 import os
-import sqlite3
 import pandas as pd
 import pickle
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from datetime import datetime
 import subprocess
 import json
+from datetime import datetime
 
 # ---------------- Feature Loader ----------------
 def load_features_from_store(db_path="featurestore/featurestore/feature_store.db"):

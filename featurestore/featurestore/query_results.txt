@@ -225,6 +225,20 @@ BalanceSalaryRatio                          Balance divided by salary Balance & 
 BalanceSalaryRatio                          Balance divided by salary Balance & EstimatedSalary    v1.0 2025-08-23 19:00:16
           AgeGroup                        Categorized age into groups                       Age    v1.0 2025-08-23 19:00:16
  CreditScoreBucket           Bucketed credit score (Poor → Excellent)               CreditScore    v1.0 2025-08-23 19:00:16
+       CreditScore                              Customer credit score          Original dataset    v1.0 2025-08-23 19:01:18
+         Geography                       Customer geography (country)          Original dataset    v1.0 2025-08-23 19:01:18
+            Gender                                    Customer gender          Original dataset    v1.0 2025-08-23 19:01:18
+               Age                                       Customer age          Original dataset    v1.0 2025-08-23 19:01:18
+            Tenure                    Years customer stayed with bank          Original dataset    v1.0 2025-08-23 19:01:18
+           Balance                           Customer account balance          Original dataset    v1.0 2025-08-23 19:01:18
+     NumOfProducts           Number of bank products used by customer          Original dataset    v1.0 2025-08-23 19:01:18
+         HasCrCard   Whether customer has a credit card (1=yes, 0=no)          Original dataset    v1.0 2025-08-23 19:01:18
+    IsActiveMember Whether customer is an active member (1=yes, 0=no)          Original dataset    v1.0 2025-08-23 19:01:18
+   EstimatedSalary                        Customer’s estimated salary          Original dataset    v1.0 2025-08-23 19:01:18
+            Exited              Whether customer exited (1=yes, 0=no)          Original dataset    v1.0 2025-08-23 19:01:18
+BalanceSalaryRatio                          Balance divided by salary Balance & EstimatedSalary    v1.0 2025-08-23 19:01:18
+          AgeGroup                        Categorized age into groups                       Age    v1.0 2025-08-23 19:01:18
+ CreditScoreBucket           Bucketed credit score (Poor → Excellent)               CreditScore    v1.0 2025-08-23 19:01:18
 
 --- Retrieve engineered features ---
  CustomerId  CreditScore  Geography  Gender       Age    Tenure   Balance  NumOfProducts  HasCrCard  IsActiveMember  EstimatedSalary  Exited  BalanceSalaryRatio AgeGroup CreditScoreBucket
