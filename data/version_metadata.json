@@ -148,5 +148,15 @@
         "version_id": "5482feb7ec4042fdc9021a5d64e31c9357d9c184",
         "timestamp": "2025-08-23 23:28:59",
         "notes": "Changes_Commited"
+    },
+    {
+        "dataset_name": "churn_raw.csv",
+        "paths": {
+            "raw": "dataversioning/raw/churn_raw.csv",
+            "transformed": "dataversioning/transformed/churn_transformed_v1.csv"
+        },
+        "version_id": "becfbcd6b23106213b1430465f61d67f1330a5f4",
+        "timestamp": "2025-08-23 23:31:16",
+        "notes": "Changes_Commited"
     }
 ]
