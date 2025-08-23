@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[6]:
 
 
 import os
@@ -18,7 +18,6 @@ from sklearn.svm import SVC
 import subprocess
 import json
 from datetime import datetime
-import sqlite3
 
 # ---------------- Feature Loader ----------------
 def load_features_from_store(db_path="featurestore/featurestore/feature_store.db"):
