@@ -36,7 +36,7 @@ def evaluate_model(y_true, y_pred):
     }
 
 # ---------------- Save Git Version Metadata ----------------
-def save_version_metadata(version_file="data/model_versions.json", notes=""):
+def save_version_metadata(version_file="models/model_versions.json", notes=""):
     commit_id = subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -59,7 +59,7 @@ def save_version_metadata(version_file="data/model_versions.json", notes=""):
 # ---------------- Training ----------------
 def run_training(db_path="featurestore/featurestore/feature_store.db"):
     df = load_features_from_store(db_path)
-
+    os.makedirs("models", exist_ok=True)
     # Drop ID column
     df = df.drop(columns=["CustomerId"])
 
@@ -78,7 +78,7 @@ def run_training(db_path="featurestore/featurestore/feature_store.db"):
     )
 
     results = {}
-    os.makedirs("models", exist_ok=True)
+    
 
     # Logistic Regression
     pipe_lr = Pipeline(steps=[("preprocessor", preprocessor),
@@ -108,7 +108,7 @@ def run_training(db_path="featurestore/featurestore/feature_store.db"):
         pickle.dump(pipe_svm, f)
 
     # Save metrics report
-    with open("data/model_results.txt", "w") as f:
+    with open("models/model_results.txt", "w") as f:
         for model_name, metrics in results.items():
             f.write(f"Model: {model_name}\n")
             for metric, value in metrics.items():

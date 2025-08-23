@@ -1,0 +1,18 @@
+Model: Logistic Regression
+  accuracy: 0.8162
+  precision: 0.6277
+  recall: 0.2401
+  f1_score: 0.3473
+
+Model: Random Forest
+  accuracy: 0.9999
+  precision: 1.0000
+  recall: 0.9995
+  f1_score: 0.9998
+
+Model: SVM
+  accuracy: 0.8620
+  precision: 0.8138
+  recall: 0.4183
+  f1_score: 0.5525
+
