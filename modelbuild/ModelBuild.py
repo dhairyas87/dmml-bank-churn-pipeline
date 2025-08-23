@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[3]:
 
 
 # ml_training.py
@@ -15,13 +15,13 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-import tensorflow as tf
+from sklearn.svm import SVC
 from datetime import datetime
 import subprocess
 import json
 
 # ---------------- Feature Loader ----------------
-def load_features_from_store(db_path="data/feature_store.db"):
+def load_features_from_store(db_path="featurestore/featurestore/feature_store.db"):
     conn = sqlite3.connect(db_path)
     df = pd.read_sql_query("SELECT * FROM features", conn)
     conn.close()
@@ -37,7 +37,7 @@ def evaluate_model(y_true, y_pred):
     }
 
 # ---------------- Save Git Version Metadata ----------------
-def save_version_metadata(version_file="modelbuilding/model_versions.json", notes=""):
+def save_version_metadata(version_file="data/model_versions.json", notes=""):
     commit_id = subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -58,7 +58,7 @@ def save_version_metadata(version_file="modelbuilding/model_versions.json", note
         json.dump(metadata, f, indent=4)
 
 # ---------------- Training ----------------
-def run_training(db_path = "featurestore/featurestore/feature_store.db"):
+def run_training(db_path="featurestore/featurestore/feature_store.db"):
     df = load_features_from_store(db_path)
 
     X = df.drop(columns=["Exited"])
@@ -89,21 +89,16 @@ def run_training(db_path = "featurestore/featurestore/feature_store.db"):
     with open("models/random_forest.pkl", "wb") as f:
         pickle.dump(rf, f)
 
-    # 3. TensorFlow Neural Network
-    model = tf.keras.Sequential([
-        tf.keras.layers.Dense(64, activation="relu", input_shape=(X_train_scaled.shape[1],)),
-        tf.keras.layers.Dense(32, activation="relu"),
-        tf.keras.layers.Dense(1, activation="sigmoid")
-    ])
-    model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
-    model.fit(X_train_scaled, y_train, epochs=10, batch_size=32, verbose=0)
-
-    y_pred_tf = (model.predict(X_test_scaled) > 0.5).astype("int32").flatten()
-    results["TensorFlow NN"] = evaluate_model(y_test, y_pred_tf)
-    model.save("models/tensorflow_nn.h5")
+    # 3. Support Vector Machine (SVM)
+    svm = SVC(kernel="rbf", probability=True, random_state=42)
+    svm.fit(X_train_scaled, y_train)
+    y_pred_svm = svm.predict(X_test_scaled)
+    results["SVM"] = evaluate_model(y_test, y_pred_svm)
+    with open("models/svm.pkl", "wb") as f:
+        pickle.dump(svm, f)
 
     # Save metrics report
-    with open("modelbuilding/model_results.txt", "w") as f:
+    with open("data/model_results.txt", "w") as f:
         for model_name, metrics in results.items():
             f.write(f"Model: {model_name}\n")
             for metric, value in metrics.items():
@@ -111,16 +106,10 @@ def run_training(db_path = "featurestore/featurestore/feature_store.db"):
             f.write("\n")
 
     # Save version metadata
-    save_version_metadata(notes="Trained models with Logistic Regression, RF, TensorFlow NN")
+    save_version_metadata(notes="Trained models with Logistic Regression, Random Forest, SVM")
 
     print("✅ Training complete.")
     print("📂 Deliverables: models/ (saved models), data/model_results.txt (report), data/model_versions.json (versions)")
-
-
-# In[ ]:
-
-
-
 
 
 # In[ ]:
