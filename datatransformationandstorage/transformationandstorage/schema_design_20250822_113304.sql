@@ -1,0 +1,16 @@
+CREATE TABLE transformed_churn (
+    CreditScore REAL,
+    Geography INTEGER,
+    Gender INTEGER,
+    Age REAL,
+    Tenure REAL,
+    Balance REAL,
+    NumOfProducts INTEGER,
+    HasCrCard INTEGER,
+    IsActiveMember INTEGER,
+    EstimatedSalary REAL,
+    Exited INTEGER,
+    AgeGroup TEXT,
+    BalanceSalaryRatio REAL,
+    CreditScoreBucket TEXT,
+);
