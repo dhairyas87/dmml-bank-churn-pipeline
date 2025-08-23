@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[4]:
 
 
 # ml_training.py
@@ -23,7 +23,7 @@ import json
 # ---------------- Feature Loader ----------------
 def load_features_from_store(db_path="featurestore/featurestore/feature_store.db"):
     conn = sqlite3.connect(db_path)
-    df = pd.read_sql_query("SELECT * FROM features", conn)
+    df = pd.read_sql_query("SELECT * FROM engineered_features", conn)
     conn.close()
     return df
 
