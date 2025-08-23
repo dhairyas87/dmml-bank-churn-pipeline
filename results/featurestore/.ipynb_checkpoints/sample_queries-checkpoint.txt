@@ -1,0 +1,12 @@
+-- Show feature metadata --
+SELECT * FROM feature_metadata
+
+-- Retrieve engineered features --
+SELECT * FROM engineered_features LIMIT 10
+
+-- Top customers by BalanceSalaryRatio --
+SELECT CustomerId, BalanceSalaryRatio FROM engineered_features ORDER BY BalanceSalaryRatio DESC LIMIT 5
+
+-- Distribution of CreditScoreBucket --
+SELECT CreditScoreBucket, COUNT(*) as Count FROM engineered_features GROUP BY CreditScoreBucket
+

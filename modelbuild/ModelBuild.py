@@ -60,7 +60,7 @@ def save_version_metadata(version_file="results/models/model_versions.json", not
 # ---------------- Training ----------------
 def run_training(db_path="results/featurestore/feature_store.db"):
     df = load_features_from_store(db_path)
-    os.makedirs("results/modelssss", exist_ok=True)
+    os.makedirs("results/models", exist_ok=True)
     # Drop ID column
     df = df.drop(columns=["CustomerId"])
 
