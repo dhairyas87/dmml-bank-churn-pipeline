@@ -115,7 +115,7 @@ def create_feature_store(transformed_df: pd.DataFrame, base_path: str):
     generate_feature_docs(conn, base_path)
 
     logging.info(f"Feature store created at {db_path}")
-    return conn, db_path
+    return feature_df,conn, db_path
 
 
 def generate_feature_docs(conn, base_path: str):
