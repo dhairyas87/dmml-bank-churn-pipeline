@@ -1,26 +1,10 @@
 [
     {
         "dataset_name": "churn_raw.csv",
-        "dataset_type": "raw",
+        "dataset_type": "bank_churn",
         "path": "dataversioning/raw/churn_raw.csv",
-        "version_id": "3b692f4d25f571e48631e6b7ee86779715927a4f",
-        "timestamp": "2025-08-23 16:17:30",
-        "notes": "Initial raw dataset upload"
-    },
-    {
-        "dataset_name": "churn_raw.csv",
-        "dataset_type": "raw",
-        "path": "dataversioning/raw/churn_raw.csv",
-        "version_id": "3ca737d9aaafcc9bfd595324e3a3b4ea0c548a82",
-        "timestamp": "2025-08-23 16:28:59",
-        "notes": "Initial raw dataset upload"
-    },
-    {
-        "dataset_name": "churn_transformed_v1.csv",
-        "dataset_type": "transformed",
-        "path": "dataversioning/transformed/churn_transformed_v1.csv",
-        "version_id": "7b43d2bae2bca491ea528f20a0016a872a962a9f",
-        "timestamp": "2025-08-23 16:29:02",
-        "notes": "Applied feature engineering v1.0"
+        "version_id": "fbbe11fd411f158fd74fad1beb459ef13a167d6e",
+        "timestamp": "2025-08-23 16:42:20",
+        "notes": "DatasetUpload"
     }
 ]
