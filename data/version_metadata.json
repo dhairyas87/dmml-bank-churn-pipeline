@@ -14,5 +14,13 @@
         "version_id": "3ca737d9aaafcc9bfd595324e3a3b4ea0c548a82",
         "timestamp": "2025-08-23 16:28:59",
         "notes": "Initial raw dataset upload"
+    },
+    {
+        "dataset_name": "churn_transformed_v1.csv",
+        "dataset_type": "transformed",
+        "path": "dataversioning/transformed/churn_transformed_v1.csv",
+        "version_id": "7b43d2bae2bca491ea528f20a0016a872a962a9f",
+        "timestamp": "2025-08-23 16:29:02",
+        "notes": "Applied feature engineering v1.0"
     }
 ]
