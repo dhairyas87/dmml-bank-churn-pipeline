@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[1]:
 
 
 import os
@@ -21,7 +21,7 @@ from datetime import datetime
 import sqlite3
 
 # ---------------- Feature Loader ----------------
-def load_features_from_store(db_path="featurestore/featurestore/feature_store.db"):
+def load_features_from_store(db_path="results/featurestore/feature_store.db"):
     conn = sqlite3.connect(db_path)
     df = pd.read_sql_query("SELECT * FROM engineered_features", conn)
     conn.close()
@@ -37,7 +37,7 @@ def evaluate_model(y_true, y_pred):
     }
 
 # ---------------- Save Git Version Metadata ----------------
-def save_version_metadata(version_file="models/model_versions.json", notes=""):
+def save_version_metadata(version_file="results/models/model_versions.json", notes=""):
     commit_id = subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -58,9 +58,9 @@ def save_version_metadata(version_file="models/model_versions.json", notes=""):
         json.dump(metadata, f, indent=4)
 
 # ---------------- Training ----------------
-def run_training(db_path="featurestore/featurestore/feature_store.db"):
+def run_training(db_path="results/featurestore/feature_store.db"):
     df = load_features_from_store(db_path)
-    os.makedirs("models", exist_ok=True)
+    os.makedirs("results", exist_ok=True)
     # Drop ID column
     df = df.drop(columns=["CustomerId"])
 
@@ -87,7 +87,7 @@ def run_training(db_path="featurestore/featurestore/feature_store.db"):
     pipe_lr.fit(X, y)
     y_pred_lr = pipe_lr.predict(X)
     results["Logistic Regression"] = evaluate_model(y, y_pred_lr)
-    with open("models/log_reg.pkl", "wb") as f:
+    with open("results/models/log_reg.pkl", "wb") as f:
         pickle.dump(pipe_lr, f)
 
     # Random Forest
@@ -96,7 +96,7 @@ def run_training(db_path="featurestore/featurestore/feature_store.db"):
     pipe_rf.fit(X, y)
     y_pred_rf = pipe_rf.predict(X)
     results["Random Forest"] = evaluate_model(y, y_pred_rf)
-    with open("models/random_forest.pkl", "wb") as f:
+    with open("results/models/random_forest.pkl", "wb") as f:
         pickle.dump(pipe_rf, f)
 
     # SVM
@@ -105,11 +105,11 @@ def run_training(db_path="featurestore/featurestore/feature_store.db"):
     pipe_svm.fit(X, y)
     y_pred_svm = pipe_svm.predict(X)
     results["SVM"] = evaluate_model(y, y_pred_svm)
-    with open("models/svm.pkl", "wb") as f:
+    with open("results/models/svm.pkl", "wb") as f:
         pickle.dump(pipe_svm, f)
 
     # Save metrics report
-    with open("models/model_results.txt", "w") as f:
+    with open("results/models/model_results.txt", "w") as f:
         for model_name, metrics in results.items():
             f.write(f"Model: {model_name}\n")
             for metric, value in metrics.items():
