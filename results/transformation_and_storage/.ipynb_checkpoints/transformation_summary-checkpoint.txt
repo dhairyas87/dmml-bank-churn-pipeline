@@ -1,4 +1,0 @@
-=== Transformation Logic Applied ===
-- Created AgeGroup from Age (bins: <25, 25-40, 40-60, >60).
-- Created BalanceSalaryRatio = Balance / (EstimatedSalary + 1).
-- Created CreditScoreBucket from CreditScore (Low <500, Medium 500-700, High >700).
