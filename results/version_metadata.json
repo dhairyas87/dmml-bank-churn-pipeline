@@ -1,0 +1,12 @@
+[
+    {
+        "dataset_name": "churn_raw",
+        "paths": {
+            "raw": "results/dataversion/churn_raw.csv",
+            "transformed": "results/dataversion/churn_transformed_v1.csv"
+        },
+        "version_id": "60057a3b2f09ca0753236a72342e3362c7736bf2",
+        "timestamp": "2025-08-24 11:01:32",
+        "notes": "Pipeline_runnning_updates"
+    }
+]
