@@ -1,2 +1,6 @@
 2025-08-24 11:01:26,892 [INFO] [https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv] CSV data loading from https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv
 2025-08-24 11:01:30,268 [INFO] [https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv] CSV data loaded with shape (10000, 14)
+2025-08-24 11:03:27,404 [INFO] [https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv] CSV data loading from https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv
+2025-08-24 11:03:27,404 [INFO] [https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv] CSV data loading from https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv
+2025-08-24 11:03:34,861 [INFO] [https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv] CSV data loaded with shape (10000, 14)
+2025-08-24 11:03:34,861 [INFO] [https://synapseaisolutionsa.z13.web.core.windows.net/data/bankcustomerchurn/churn.csv] CSV data loaded with shape (10000, 14)
