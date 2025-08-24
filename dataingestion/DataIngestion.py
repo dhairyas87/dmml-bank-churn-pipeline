@@ -18,9 +18,9 @@ import os
 # ---------------------
 # Logging Setup
 # ---------------------
-log_file = "ingestion_jobs_results.log"
+log_file = "ingestion_job_results.log"
 
-logger = logging.getLogger("IngestionLoggerResults")
+logger = logging.getLogger("IngestionLoggerResult")
 logger.setLevel(logging.INFO)
 
 # Console handler
@@ -119,6 +119,7 @@ def run_periodic_ingestion(interval_seconds=60):
 
         logger.info("=== Ingestion cycle completed ===\n")
         time.sleep(interval_seconds)  # wait before next cycle
+        return df_csv
 
 
 # In[ ]:
