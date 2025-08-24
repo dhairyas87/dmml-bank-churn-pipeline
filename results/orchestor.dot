@@ -1,0 +1,18 @@
+// Churn ML Pipeline
+digraph {
+	train_model [label=train_model]
+	validate_data [label=validate_data]
+	build_feature_store [label=build_feature_store]
+	ingest_data [label=ingest_data]
+	version_data [label=version_data]
+	prepare_data [label=prepare_data]
+	transform_data [label=transform_data]
+	store_data [label=store_data]
+	ingest_data -> store_data
+	ingest_data -> validate_data
+	ingest_data -> prepare_data
+	prepare_data -> transform_data
+	transform_data -> build_feature_store
+	build_feature_store -> train_model
+	build_feature_store -> version_data
+}
