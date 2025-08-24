@@ -18,5 +18,15 @@
         "version_id": "f1f7a5998dd32dcd0736ac0d38eb3ea7416d4e75",
         "timestamp": "2025-08-24 11:03:36",
         "notes": "Pipeline_runnning_updates"
+    },
+    {
+        "dataset_name": "churn_raw",
+        "paths": {
+            "raw": "results/dataversion/churn_raw.csv",
+            "transformed": "results/dataversion/churn_transformed_v1.csv"
+        },
+        "version_id": "26104f58472014a8bba0b05544f9d49c3ea605bb",
+        "timestamp": "2025-08-24 11:07:29",
+        "notes": "Pipeline_runnning_updates"
     }
 ]
